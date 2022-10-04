@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_sample_app/pages/dashboard.dart';
+import 'package:my_sample_app/util/animation/FadeAnimation.dart';
 
 class LauncherPage extends StatefulWidget  {
   const LauncherPage({ Key? key }) : super(key: key);
@@ -23,16 +25,16 @@ class _LauncherPageState  extends State <LauncherPage>{
     CountryName('Ten','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
   ];
 
-int selectedService = 4;
+int selectedService = 6;
 
  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 80),
+          SizedBox(height: 100),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
+            padding: EdgeInsets.symmetric(horizontal: 50),
             height: MediaQuery.of(context).size.height * 0.45,
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
@@ -44,15 +46,8 @@ int selectedService = 4;
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: countryNames.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(1)
-                  ),
-                  child: Text(countryNames[index].name),
-                );
-               }),
+                return FadeAnimation((1.0 + index) / 4, countryContainer(countryNames[index].imageURL, countryNames[index].name, index));
+              }),
           )
         ],
       )
@@ -62,8 +57,8 @@ int selectedService = 4;
     return GestureDetector(
       onTap: () {},
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
-        padding: const EdgeInsets.all(8.0),
+        duration: Duration(milliseconds: 500),
+        padding: EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: selectedService == index ? Colors.white : Colors.grey.shade100,
           border: Border.all(
@@ -78,12 +73,12 @@ int selectedService = 4;
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.network(image, height: 30),
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
               Text(
                 name,
-                style: const TextStyle(fontSize: 14),
+                style: TextStyle(fontSize: 14),
               )
             ]),
       ),
