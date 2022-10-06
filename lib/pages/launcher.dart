@@ -2,57 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:my_sample_app/pages/dashboard.dart';
 import 'package:my_sample_app/util/animation/FadeAnimation.dart';
 
-class LauncherPage extends StatefulWidget  {
-  const LauncherPage({ Key? key }) : super(key: key);
+class LauncherPage extends StatefulWidget {
+  const LauncherPage({Key? key}) : super(key: key);
 
-@override
+  @override
   _LauncherPageState createState() => _LauncherPageState();
-  
 }
 
-class _LauncherPageState  extends State <LauncherPage>{
-
+class _LauncherPageState extends State<LauncherPage> {
   List<CountryName> countryNames = [
-    CountryName('One','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Two','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Three','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Four','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Five','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Six','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Seven','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Eight','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Nine','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
-    CountryName('Ten','https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('One',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Two',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Three',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Four',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Five',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Six',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Seven',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Eight',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Nine',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
+    CountryName('Ten',
+        'https://thumbs.dreamstime.com/b/tick-icon-circle-symbol-flat-solution-check-approval-128428629.jpg'),
   ];
 
-int selectedService = 6;
+  int selectedService = 6;
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(height: 100),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 50),
-            height: MediaQuery.of(context).size.height * 0.45,
-            width: MediaQuery.of(context).size.width,
-            child: GridView.builder(
+        body: Column(
+      children: [
+        SizedBox(height: 100),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 50),
+          height: MediaQuery.of(context).size.height * 0.45,
+          width: MediaQuery.of(context).size.width,
+          child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 6,
                 childAspectRatio: 2.0,
                 crossAxisSpacing: 4.0,
-                mainAxisSpacing: 4.0,), 
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: countryNames.length,
+                mainAxisSpacing: 4.0,
+              ),
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: countryNames.length,
               itemBuilder: (BuildContext context, int index) {
-                return FadeAnimation((1.0 + index) / 4, countryContainer(countryNames[index].imageURL, countryNames[index].name, index));
+                return FadeAnimation(
+                    (1.0 + index) / 4,
+                    countryContainer(countryNames[index].imageURL,
+                        countryNames[index].name, index));
               }),
-          )
-        ],
-      )
-    );
+        ),
+      ],
+    ));
   }
+
   countryContainer(String image, String name, int index) {
     return GestureDetector(
       onTap: () {},
@@ -84,8 +96,6 @@ int selectedService = 6;
       ),
     );
   }
-
-
 }
 
 class CountryName {
@@ -93,5 +103,3 @@ class CountryName {
   final String imageURL;
   CountryName(this.name, this.imageURL);
 }
-
-
