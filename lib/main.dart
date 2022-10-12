@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_sample_app/pages/launcher.dart';
+import 'package:my_sample_app/pages/animationTween.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: LauncherPage(),
+  runApp(const MaterialApp(
+    home: AnimationTweenPage(),
     debugShowCheckedModeBanner: false,
   ));
 }
